@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Manager</title>
+</head>
+<body>
+    <h1>GitHub Profile Manager</h1>
+    <form id="profile-form">
+        <label for="github_username">GitHub Username:</label>
+        <input type="text" id="github_username" name="github_username" required>
+        <br>
+        <label for="additional_info">Additional Information:</label>
+        <textarea id="additional_info" name="additional_info"></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="profile-data"></div>
+
+    <script>
+        document.getElementById('profile-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('github_username').value;
+            const additionalInfo = document.getElementById('additional_info').value;
+
+            fetch('/api/profiles/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token') // Adicione um mecanismo para obter o token
+                },
+                body: JSON.stringify({ github_username: username, additional_info: additionalInfo })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('profile-data').innerHTML = `
+                    <h2>${data.github_username}</h2>
+                    <p>${data.bio}</p>
+                    <img src="${data.avatar_url}" alt="Avatar" width="100">
+                    <p>${data.additional_info}</p>
+                    <ul>
+                        ${data.repositories.map(repo => `
+                            <li>
+                                <a href="${repo.url}">${repo.name}</a> - ${repo.description}
+                                ${repo.is_favorite ? '★' : ''}
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
