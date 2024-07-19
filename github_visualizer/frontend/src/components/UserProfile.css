@@ -1,0 +1,34 @@
+.user-profile {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .user-profile h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  
+  .user-profile p {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+  
+  .user-profile h2 {
+    font-size: 1.5em;
+    margin-top: 1.5em;
+  }
+  
+  .user-profile ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-profile li {
+    margin-bottom: 1em;
+  }
+  
+  .user-profile li h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  

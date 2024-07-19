@@ -20,3 +20,11 @@ class Repository(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Profile(models.Model):
+    username = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
+    bio = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.username

@@ -10,6 +10,7 @@
     <form id="profile-form">
         <label for="github_username">GitHub Username:</label>
         <input type="text" id="github_username" name="github_username" required>
+        <br> 
         <br>
         <label for="additional_info">Additional Information:</label>
         <textarea id="additional_info" name="additional_info"></textarea>
@@ -29,7 +30,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('token') // Adicione um mecanismo para obter o token
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 body: JSON.stringify({ github_username: username, additional_info: additionalInfo })
             })
@@ -41,7 +42,7 @@
                     <img src="${data.avatar_url}" alt="Avatar" width="100">
                     <p>${data.additional_info}</p>
                     <ul>
-                        ${data.repositories.map(repo => `
+                        ${data.repositories.slice(0, 8).map(repo => `
                             <li>
                                 <a href="${repo.url}">${repo.name}</a> - ${repo.description}
                                 ${repo.is_favorite ? '★' : ''}

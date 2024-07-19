@@ -2,14 +2,17 @@ import requests
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.decorators import action, permission_classes
+from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from .models import GitHubProfile, Repository
-from .serializers import GitHubProfileSerializer, RepositorySerializer
+from .models import GitHubProfile, Repository, Profile
+from .serializers import GitHubProfileSerializer, RepositorySerializer, ProfileSerializer
 
-class GitHubProfileViewSet(viewsets.ModelViewSet):
+
+class GitHubProfileViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = GitHubProfile.objects.all()
     serializer_class = GitHubProfileSerializer
+    permission_classes = [AllowAny]
 
     def get_permissions(self):
         if self.action == 'create':
@@ -46,15 +49,27 @@ class GitHubProfileViewSet(viewsets.ModelViewSet):
 
         repos_response = requests.get(f'https://api.github.com/users/{github_username}/repos')
         repos_data = repos_response.json()
-        for repo_data in repos_data:
+
+
+        repos_data = [repo for repo in repos_data if repo['name'] != github_username]
+
+        def calculate_repo_score(repo):
+            return (repo['stargazers_count'] * 0.5) + (repo['watchers_count'] * 0.3) + (repo['forks_count'] * 0.2)
+        
+        repos_data.sort(key=lambda repo: (calculate_repo_score(repo), repo['size']), reverse=True)
+        top_repos = repos_data[:8]
+
+        for repo_data in top_repos:
             Repository.objects.get_or_create(
                 profile=profile,
                 name=repo_data['name'],
                 defaults={
-                    'description': repo_data['description'],
+                    'description': repo_data.get('description', ''),
                     'url': repo_data['html_url'],
                 }
             )
+
+        Repository.objects.filter(profile=profile).exclude(name__in=[repo['name'] for repo in top_repos]).delete()
 
         serializer = self.get_serializer(profile)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -73,3 +88,17 @@ class GitHubProfileViewSet(viewsets.ModelViewSet):
 
 def index(request):
     return render(request, 'api/index.html')
+
+class UserProfileView(APIView):
+    def get(self, request, username):
+        try:
+            profile = Profile.objects.get(username=username)
+            repositories = Repository.objects.filter(profile=profile)
+            profile_data = ProfileSerializer(profile).data
+            repositories_data = RepositorySerializer(repositories, many=True).data
+            return Response({
+                'profile': profile_data,
+                'repositories': repositories_data
+            })
+        except Profile.DoesNotExist:
+            return Response({'error': 'Profile not found'}, status=404)
