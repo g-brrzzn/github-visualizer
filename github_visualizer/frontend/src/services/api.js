@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:8000/api';
 
 export const fetchUserProfile = async (username) => {
   try {
-    const response = await axios.get(`${API_URL}/profile/${username}/`);
+    const response = await axios.get(`${API_URL}/profiles/${username}/`);
     return response.data;
   } catch (error) {
     console.error("Error fetching user profile", error);

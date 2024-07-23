@@ -15,16 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from api.views import GitHubProfileViewSet, index
-
-router = DefaultRouter()
-router.register(r'profiles', GitHubProfileViewSet)
+from django.urls import path
+from api.views import UserProfileView, index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
     path('', index, name='index'),
+    path('api/profiles/<str:username>/', UserProfileView.as_view(), name='user_profile'),
 ]
 
