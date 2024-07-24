@@ -23,25 +23,29 @@ const UserProfile = () => {
   }, [username]);
 
   if (!profile) {
-    return <div>Loading...</div>;
+    return <div className="center">Loading...</div>;
   }
 
   return (
+
     <div className="user-profile">
-      <h1>{profile.name}</h1>
-      <p>{profile.bio}</p>
-      <h2>Repositories</h2>
-      <ul>
-        {repositories.map(repo => (
-          <li key={repo.id}>
-            <h3>{repo.name}</h3>
-            <p>{repo.description}</p>
-            <p>Stars: {repo.stargazers_count}</p>
-            <p>Forks: {repo.forks_count}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <img src={profile.avatar_url} alt={`${profile.name}'s avatar`} className="profile-avatar" />
+      <hr></hr>
+        <h1>{profile.name}</h1>
+        <p id="tab">{profile.bio}</p>
+        <h2>Repositories</h2>
+        <div className="repo-grid">
+          {repositories.map(repo => (
+            <div key={repo.id} className="repo-item">
+              <h3>{repo.name}</h3>
+              <p>{repo.description}</p>
+              <p>Stars: {repo.stargazers_count}</p>
+              <p>Forks: {repo.forks_count}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
   );
 };
 

@@ -1,39 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tilt+Warp&display=swap');
+
+
+@font-face {
+  font-family: 'intro';
+  src: url(introheadr-base.otf);
+}
+
+:root {
+  --back: #0B0B0C;
+  --cor1: #F4EAB9;
+  --cor2: #A57202; 
+}
+
+body {
+  background-color: var(--back);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+
+.center {
+  margin: 0;
+  position: absolute;
+  top:  50%;
+  left: 50%;
+  -ms-transform:  translate(-50%, -50%);
+  transform:      translate(-50%, -50%);
+  font-family: "Tilt Warp", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style:  normal;
+  font-variation-settings:
+    "XROT" -3,
+    "YROT" 0;
+  color: var(--cor1);
+}
+
 .user-profile {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  padding:    20px;
+  max-width:  800px;
+  margin:     0 auto;
+  font-family: 'intro';
+  -webkit-font-smoothing:  antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .user-profile h1 {
-  margin-bottom: 10px;
+  margin-bottom:  10px;
+  font-family:    "Tilt Warp", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:  400;
+  font-style:   normal;
+  font-variation-settings:
+  "XROT" -3,
+  "YROT" 0;
+  color: var(--cor1);
+  -webkit-font-smoothing:   antialiased;
+  -moz-osx-font-smoothing:  grayscale;
 }
 
 .user-profile p {
   margin-bottom: 20px;
+  font-family:   'intro';
+  color:         var(--cor1);
+  -webkit-font-smoothing:   antialiased;
+  -moz-osx-font-smoothing:  grayscale;
 }
 
 .user-profile h2 {
   margin-top: 30px;
+  font-family: "Tilt Warp", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+  "XROT" -3,
+  "YROT" 0;
+  color: var(--cor1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.user-profile ul {
+.repo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
   list-style-type: none;
   padding: 0;
 }
 
-.user-profile li {
-  border: 1px solid #ccc;
+.repo-item {
+  flex: 1 1 calc(50% - 20px);
+  box-sizing: border-box;
   padding: 10px;
+  border: 1px solid var(--cor1);
   margin-bottom: 10px;
   border-radius: 5px;
+  color:#0b0b0c6c
 }
 
-.user-profile li h3 {
+.repo-item h3 {
   margin: 0;
   margin-bottom: 5px;
+  font-family: "Tilt Warp", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+  "XROT" -3,
+  "YROT" 0;
+  color: var(--cor1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
 }
 
-.user-profile li p {
+.repo-item p {
   margin: 0;
   margin-bottom: 5px;
+  color: var(--cor1);
+  font-family: 'intro';
+}
+
+@media (max-width: 600px) {
+  .repo-item {
+    flex: 1 1 100%;
+  }
+}
+
+.profile-avatar {
+  width: 150px; 
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px; 
+  border: 3px solid var(--cor1);
+}
+
+hr {
+  border-top: 1px solid var(--cor1);
+}
+
+#tab {
+  text-indent: 15px;
 }

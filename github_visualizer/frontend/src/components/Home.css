@@ -1,14 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tilt+Warp&display=swap');
+
+
+@font-face {
+  font-family: 'intro';
+  src: url(introheadr-base.otf);
+}
+
+
+.background {
+  filter:   blur(4px);
+  position: absolute;
+  width:    100%;
+  height:   100%;
+  background-color: #0B0B0C;
+}
+
 .home {
-    display: flex;
+    display:        flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items:    center;
+    justify-content:center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #0B0B0C;
+    backdrop-filter: blur(10px);
   }
   
   .home h1 {
     margin-bottom: 20px;
+    font-family: "Tilt Warp", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "XROT" -3,
+    "YROT" 0;
+    color: #F4EAB9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   .home form {
@@ -22,11 +50,32 @@
     margin-bottom: 10px;
     width: 300px;
     font-size: 16px;
+    font-family: 'intro';
+    background-color: #F4EAB9;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 7px;
+    border: solid;
   }
   
   .home button {
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
+    font-family: "Tilt Warp", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "XROT" -3,
+    "YROT" 0;
+    background-color: #A57202;
+    color: #F4EAB9;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: 5px;
+    border: solid;
+    border-color: #A57202;
   }
-  

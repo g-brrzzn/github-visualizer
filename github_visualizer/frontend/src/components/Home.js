@@ -18,18 +18,18 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <h1>Welcome to GitHub Visualizer</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter GitHub username"
-          value={username}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Fetch Profile</button>
-      </form>
-    </div>
+      <div className="home">
+        <h1>Welcome to GitHub Visualizer</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Enter GitHub username"
+            value={username}
+            onChange={handleInputChange}
+          />
+          <button type="submit">Search Profile</button>
+        </form>
+      </div>
   );
 };
 
