@@ -1,10 +1,6 @@
 import requests
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
-def index(request):
-    return render(request, 'api/index.html')
 
 class UserProfileView(APIView):
     def get(self, request, username):
@@ -31,7 +27,12 @@ class UserProfileView(APIView):
                 'avatar_url': profile_data.get('avatar_url', ''),
                 'name': profile_data.get('name', ''),
                 'login': profile_data.get('login', ''),
-                'public_repos': profile_data.get('public_repos', 0)
+                'public_repos': profile_data.get('public_repos', 0),
+                'location': profile_data.get('location', ''),
+                'company': profile_data.get('company', ''),
+                'email': profile_data.get('email', ''),
+                'followers': profile_data.get('followers', 0),
+                'following': profile_data.get('following', 0)
             },
             'repositories': [
                 {

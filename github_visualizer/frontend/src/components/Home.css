@@ -6,13 +6,18 @@
   src: url(introheadr-base.otf);
 }
 
+:root {
+  --back: #0B0B0C;
+  --cor1: #F4EAB9;
+  --cor2: #A57202; 
+}
 
 .background {
   filter:   blur(4px);
   position: absolute;
   width:    100%;
   height:   100%;
-  background-color: #0B0B0C;
+  background-color: var(--back);
 }
 
 .home {
@@ -21,7 +26,7 @@
     align-items:    center;
     justify-content:center;
     height: 100vh;
-    background-color: #0B0B0C;
+    background-color: var(--back);
     backdrop-filter: blur(10px);
   }
   
@@ -34,7 +39,7 @@
     font-variation-settings:
     "XROT" -3,
     "YROT" 0;
-    color: #F4EAB9;
+    color: var(--cor1);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -51,7 +56,7 @@
     width: 300px;
     font-size: 16px;
     font-family: 'intro';
-    background-color: #F4EAB9;
+    background-color: var(--cor1);
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -70,12 +75,12 @@
     font-variation-settings:
     "XROT" -3,
     "YROT" 0;
-    background-color: #A57202;
-    color: #F4EAB9;
+    background-color: var(--cor2);
+    color: var(--cor1);
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     border-radius: 5px;
     border: solid;
-    border-color: #A57202;
+    border-color: var(--cor2);
   }

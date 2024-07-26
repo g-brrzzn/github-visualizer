@@ -22,30 +22,40 @@ const UserProfile = () => {
     getUserProfile();
   }, [username]);
 
+  const buildProfileInfo = (profile) => {
+    let info = [];
+    if (profile.location) info.push(profile.location);
+    if (profile.company)  info.push(profile.company);
+    if (profile.email)    info.push(profile.email);
+    let result = info.join(' | ');
+    if (result) result += ' |';
+    return result;
+  };
+
   if (!profile) {
     return <div className="center">Loading...</div>;
   }
 
   return (
-
     <div className="user-profile">
       <img src={profile.avatar_url} alt={`${profile.name}'s avatar`} className="profile-avatar" />
-      <hr></hr>
-        <h1>{profile.name}</h1>
-        <p id="tab">{profile.bio}</p>
-        <h2>Repositories</h2>
-        <div className="repo-grid">
-          {repositories.map(repo => (
-            <div key={repo.id} className="repo-item">
-              <h3>{repo.name}</h3>
-              <p>{repo.description}</p>
-              <p>Stars: {repo.stargazers_count}</p>
-              <p>Forks: {repo.forks_count}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <hr />
+      <h1>{profile.name}</h1>
+      <p id="tab">{profile.bio}</p>
+      <p id="tab">{buildProfileInfo(profile)} Followers: {profile.followers} | Following: {profile.following}</p>
 
+      <h2>Repositories</h2>
+      <div className="repo-grid">
+        {repositories.map(repo => (
+          <div key={repo.id} className="repo-item">
+            <h3>{repo.name}</h3>
+            <p>{repo.description}</p>
+            <p>Stars: {repo.stargazers_count}</p>
+            <p>Forks: {repo.forks_count}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
