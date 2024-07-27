@@ -10,4 +10,4 @@ The backend of the project uses Django to integrate with the GitHub API, fetchin
 
 The React frontend features an input field for GitHub usernames and dynamically displays profiles and repositories in a clean layout. It uses React's state management for data handling and display.
 
-Key features include real-time data fetching from the GitHub API, a responsive design for a seamless user experience across devices, and robust error handling for scenarios like invalid usernames or network issues.
+Key features include real-time data fetching from the GitHub API and a responsive design for a seamless user experience across devices. 
