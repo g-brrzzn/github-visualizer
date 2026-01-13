@@ -160,3 +160,29 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+db.sqlite3
+.env
+
+# Node / React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+build/
+
+# IDEs
+.vscode/
+.idea/
+code2text.py
+code2text_output.txt
+/github_visualizer/api/__pycache__
+github_visualizer/api/__pycache__/__init__.cpython-312.pyc
+github_visualizer/api/__pycache__/admin.cpython-312.pyc
+github_visualizer/api/__pycache__/apps.cpython-312.pyc
+github_visualizer/api/__pycache__/views.cpython-312.pyc
