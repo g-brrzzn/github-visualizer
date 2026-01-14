@@ -12,19 +12,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-from dotenv import load_dotenv # Recomendado: pip install python-dotenv
+from dotenv import load_dotenv
 
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SEGURANÇA: Nunca deixe a SECRET_KEY no código. Use variáveis de ambiente.
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'mude-isso-em-producao-123')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-change-me-in-production')
 
-# SEGURANÇA: DEBUG deve ser False em produção
 DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-# Defina os domínios que podem acessar o app
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
@@ -39,14 +36,13 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-# SEGURANÇA: Restrinja quem pode acessar sua API
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", # Porta padrão do React
+    "http://localhost:3000",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware', # Deve vir antes do CommonMiddleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 ROOT_URLCONF = 'github_visualizer.urls'
 
 TEMPLATES = [
